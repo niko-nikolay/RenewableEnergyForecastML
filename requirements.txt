@@ -1,0 +1,14 @@
+ipykernel
+matplotlib
+seaborn
+pandas
+geopandas
+sklearn
+xgboost
+# category_encoders
+statsmodels
+eli5
+shap
+# pdpbox
+keras
+tensorflow
