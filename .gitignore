@@ -1,0 +1,7 @@
+# python virtual environment installation
+**/python_venv/bin/
+**/python_venv/include/
+**/python_venv/lib/
+**/python_venv/lib64
+**/python_venv/share/
+**/python_venv/pyvenv.cfg
