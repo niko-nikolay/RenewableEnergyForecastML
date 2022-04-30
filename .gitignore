@@ -1,7 +1,10 @@
 # python virtual environment installation
-**/python_venv/bin/
-**/python_venv/include/
-**/python_venv/lib/
-**/python_venv/lib64
-**/python_venv/share/
-**/python_venv/pyvenv.cfg
+**/python_venv_renew/bin/
+**/python_venv_renew/include/
+**/python_venv_renew/lib64
+**/python_venv_renew/lib/
+**/python_venv_renew/share/
+**/python_venv_renew/pyvenv.cfg
+
+# notebook checkpoints
+**/notebooks/.ipynb_checkpoints/
