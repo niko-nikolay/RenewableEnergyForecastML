@@ -8,3 +8,7 @@
 
 # notebook checkpoints
 **/notebooks/.ipynb_checkpoints/
+
+# generated data
+**/data/shape_ger_*
+**/data/weather_*

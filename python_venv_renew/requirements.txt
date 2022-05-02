@@ -12,3 +12,4 @@ shap
 # pdpbox
 keras
 tensorflow
+folium
