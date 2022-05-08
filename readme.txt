@@ -21,4 +21,4 @@ after usage, deactivate virtual environment
 actual generation of electric energy from wind and solar with a 15 min
 resolution, taken from:
 
-https://energy-charts.info/charts/power/chart.htm?l=en&c=DE&stacking=stacked_absolute_area&source=sw&interval=year
+https://energy-charts.info/charts/power/chart.htm?l=en&c=DE&stacking=stacked_absolute_area&source=sw&interval=year&year=2020&download-format=text%2Fcsv&timezone=utc
