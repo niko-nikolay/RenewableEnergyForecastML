@@ -13,3 +13,4 @@ shap
 keras
 tensorflow
 folium
+hyperopt
