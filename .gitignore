@@ -12,3 +12,6 @@
 # generated data
 **/data/shape_ger_*
 **/data/weather_*
+
+# compiled files
+**/notebooks/__*

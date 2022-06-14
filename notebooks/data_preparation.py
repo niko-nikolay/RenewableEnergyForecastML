@@ -4,12 +4,14 @@ import requests
 import geopandas as gpd
 import pandas as pd
 import numpy as np
+import calendar
+from sklearn import linear_model
 
 import os
 import sys
 import requests
 
-class prepare_data:
+class data_acquisition:
 
     def __init__(self, working_dir, plot=False):
 
@@ -182,4 +184,44 @@ class prepare_data:
     def save_data(self, file_name = 'weather_electricity_data.csv'):
         # save data as da pandas dataframe
         self.weather_electricity_data.to_csv('../'+self.working_dir+'/'+file_name)
-        
+
+
+class data_conditioning:
+
+    def __init__(self, X_train, X_test, y_train, y_test):
+
+        self.y_train_stationary, self.y_test_stationary = self._make_stationary(X_train, X_test, y_train, y_test)
+
+
+    def _make_stationary(self, X_train, X_test, y_train, y_test):
+
+        # average data for each year in the training data set
+        y_yearly = y_train.resample('Y').mean()[:-1]
+        days_from_start_yearly = np.cumsum(np.array([self._nr_days(year) for year in y_yearly.index.year])) - self._nr_days(y_yearly.index.year[0])
+        X_yearly = days_from_start_yearly.reshape(-1, 1)
+
+        # fit linear model to the yearly averages
+        self._model = linear_model.LinearRegression().fit(X_yearly, y_yearly.values)
+
+        # subtract linear slope from train and test data
+        train_days_from_start = np.array([(date - X_train.index[0]).days for date in X_train.index])
+        y_train_stationary = y_train.values - train_days_from_start * self._model.coef_[0]
+        y_train_stationary = pd.Series(data=y_train_stationary, index=X_train.index)
+
+        test_days_from_start = np.array([(date - X_train.index[0]).days for date in X_test.index])
+        y_test_stationary = y_test.values - test_days_from_start * self._model.coef_[0]
+        y_test_stationary = pd.Series(data=y_test_stationary, index=X_test.index)
+
+        self._test_days_from_start = test_days_from_start
+
+        return y_train_stationary, y_test_stationary
+
+    def reverse_stationary(self, prediction):
+
+        # add linear slope from train and test data
+        prediction_reversed = prediction + self._test_days_from_start * self._model.coef_[0]
+
+        return prediction_reversed
+
+    def _nr_days(self, year):
+        return 366 if calendar.isleap(year) else 365
