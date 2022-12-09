@@ -4,28 +4,28 @@ Installation process of the virtual environment with linux:
 
 1. create virtual environment
 
-	python3 -m venv ./python_venv_renew
+   python3 -m venv ./python_venv_renew
 
 2. activate virtual environment
 
-	source ./python_venv_renew/bin/activate
+   source ./python_venv_renew/bin/activate
 
 3. install requirements
 
-	python3 -m pip install -r ./python_venv_renew/requirements.txt
+   (for Mac with M1 processor execute "brew install gdal" first)
+   python3 -m pip install -r ./python_venv_renew/requirements.txt
 
 4. install and add kernel to jupyter:
 
-	pip install --user ipykernel
-	python -m ipykernel install --user --name=python_venv_renew
+   pip install --user ipykernel
+   python -m ipykernel install --user --name=python_venv_renew
 
 after usage, deactivate virtual environment:
 
-	deactivate
+    deactivate
 
-"energy-charts_Electricity_..." contains historical data about the
+"energy-charts*Electricity*..." contains historical data about the
 actual generation of electric energy from wind and solar with a 15 min
 resolution, taken from:
 
 https://energy-charts.info/charts/power/chart.htm?l=en&c=DE&stacking=stacked_absolute_area&source=sw&interval=year&year=2020&download-format=text%2Fcsv&timezone=utc
-
